@@ -1,0 +1,124 @@
+import { ArrowDown, ArrowRight, Mail } from 'lucide-react';
+
+const techStack = [
+  'React.js', 'React Native', 'Node.js', 'TypeScript',
+  'PostgreSQL', 'AWS', 'CI/CD', 'REST APIs',
+];
+
+const domains = ['FinTech', 'Healthcare', 'E-commerce', 'Sports Tech'];
+
+// Helper: inline delay shorthand
+const d = (ms: number) => ({ animationDelay: `${ms}ms` });
+
+const HeroSection = () => (
+  <section
+    id="hero"
+    className="min-h-screen flex items-center justify-center bg-slate-950 pt-16 relative overflow-hidden"
+  >
+    {/* Grid background */}
+    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
+
+    {/* Glow blobs */}
+    <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
+
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative z-10">
+
+      {/* Availability badge */}
+      <div className="flex justify-center mb-8 anim-fade-down" style={d(0)}>
+        <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs sm:text-sm font-medium anim-glow">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+          Open to Senior Roles &amp; High-Value Freelance
+        </span>
+      </div>
+
+      {/* Name */}
+      <div className="text-center mb-8">
+        <h1
+          className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight leading-tight anim-fade-up"
+          style={d(80)}
+        >
+          Iyyappan Sivakumar
+        </h1>
+
+        {/* Subtitle */}
+        <h2
+          className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-400 mb-6 anim-fade-up"
+          style={d(180)}
+        >
+          Senior Full Stack Engineer
+        </h2>
+
+        {/* Description */}
+        <p
+          className="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed anim-fade-up"
+          style={d(270)}
+        >
+          I build production-grade web and mobile products — from architecture to
+          deployment — that scale without breaking.
+        </p>
+      </div>
+
+      {/* Domain tags */}
+      <div className="flex flex-wrap justify-center gap-2 mb-8 sm:mb-10 anim-fade-up" style={d(360)}>
+        {domains.map((d_) => (
+          <span
+            key={d_}
+            className="px-3 py-1 rounded-md bg-slate-800 border border-slate-700 text-slate-300 text-xs sm:text-sm hover:border-slate-500 hover:text-white transition-colors duration-200"
+          >
+            {d_}
+          </span>
+        ))}
+      </div>
+
+      {/* CTAs */}
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-14 anim-fade-up" style={d(450)}>
+        <button
+          onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+          className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-3.5 rounded-lg font-semibold transition-all duration-200 shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 hover:-translate-y-0.5"
+        >
+          See My Work
+          <ArrowRight className="w-4 h-4" />
+        </button>
+        <button
+          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          className="inline-flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-400 text-slate-300 hover:text-white px-8 py-3.5 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-0.5"
+        >
+          <Mail className="w-4 h-4" />
+          Let's Talk About Your Project
+        </button>
+      </div>
+
+      {/* Tech stack */}
+      <div className="border-t border-slate-800 pt-10 anim-fade" style={d(600)}>
+        <p className="text-center text-slate-500 text-sm font-medium mb-5 uppercase tracking-widest">
+          Core Stack
+        </p>
+        <div className="flex flex-wrap justify-center gap-3">
+          {techStack.map((tech, i) => (
+            <span
+              key={tech}
+              className="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700/50 text-slate-300 text-sm font-mono hover:border-blue-500/40 hover:text-white transition-colors duration-200 anim-fade-up"
+              style={{ animationDelay: `${640 + i * 40}ms` }}
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Scroll hint */}
+      <div className="flex justify-center mt-16 anim-fade" style={d(1000)}>
+        <button
+          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+          className="text-slate-600 hover:text-slate-400 transition-colors duration-200 animate-bounce"
+          aria-label="Scroll down"
+        >
+          <ArrowDown className="w-5 h-5" />
+        </button>
+      </div>
+    </div>
+  </section>
+);
+
+export default HeroSection;
