@@ -1,30 +1,58 @@
 import { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { Download, Mail, ArrowUpRight } from 'lucide-react';
+import { Download, Mail, ArrowUpRight, Moon, Sun, ArrowRight } from 'lucide-react';
 import {
   profile, featured, personal, moreProjects, experience, skills, certifications, courses,
   show, freelancerProfile, type Featured,
 } from '@/data/profile';
 import { ClubRegistrations, LoanLedger, AthleteBooking, ClubSchedule, LoanJourney, Storyboard } from './Mockups';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import Remote from './Remote';
+import CaseStudy from './CaseStudy';
 
 /* ───────── Nav ───────── */
 const links = [
   ['#work', 'Work'],
   ['#experience', 'Experience'],
+  ['#remote', 'Time zones'],
   ['#skills', 'Skills'],
   ['#certifications', 'Certifications'],
   ['#contact', 'Contact'],
 ];
 
-const Nav = () => {
-  const [solid, setSolid] = useState(false);
+/* ───────── Theme: follows the system until the visitor picks one ───────── */
+type Theme = 'light' | 'dark';
+const systemTheme = (): Theme =>
+  window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+const useTheme = () => {
+  const [theme, setTheme] = useState<Theme>(() => {
+    const set = document.documentElement.getAttribute('data-theme');
+    if (set === 'light' || set === 'dark') return set;
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+    } catch { /* storage unavailable */ }
+    return systemTheme();
+  });
+  useEffect(() => { document.documentElement.setAttribute('data-theme', theme); }, [theme]);
+  const toggle = () => {
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    try { localStorage.setItem('theme', next); } catch { /* storage unavailable */ }
+  };
+  return { theme, toggle };
+};
+
+const Nav = ({ solidAlways = false }: { solidAlways?: boolean }) => {
+  const { theme, toggle } = useTheme();
+  const [solid, setSolid] = useState(solidAlways);
   useEffect(() => {
-    const on = () => setSolid(window.scrollY > 40);
+    const on = () => setSolid(solidAlways || window.scrollY > 40);
     on();
     window.addEventListener('scroll', on, { passive: true });
     return () => window.removeEventListener('scroll', on);
-  }, []);
+  }, [solidAlways]);
   return (
     <header className={`nav ${solid ? 'solid' : ''}`}>
       <div className="wrap nav-inner">
@@ -32,9 +60,14 @@ const Nav = () => {
         <nav className="nav-links" aria-label="Sections">
           {links.map(([href, label]) => <a key={href} href={href}>{label}</a>)}
         </nav>
-        <a href={profile.resume} download className={`btn ${solid ? 'btn-solid' : 'btn-ghost-dark'}`} style={{ padding: '10px 14px', fontSize: 14 }}>
-          <Download size={16} aria-hidden="true" /> Resume
-        </a>
+        <div className="nav-right">
+          <button type="button" className="theme-btn" onClick={toggle} aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+            {theme === 'dark' ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+          </button>
+          <a href={profile.resume} download className={`btn ${solid ? 'btn-solid' : 'btn-ghost-dark'}`} style={{ padding: '10px 14px', fontSize: 14 }}>
+            <Download size={16} aria-hidden="true" /> Resume
+          </a>
+        </div>
       </div>
     </header>
   );
@@ -84,7 +117,7 @@ const Visual = ({ p }: { p: Featured }) => {
       {p.id === 'athlete' && <AthleteBooking />}
       {p.id === 'thangam' && <LoanJourney />}
       {p.id === 'video' && <Storyboard />}
-      <p className="note">{p.id === 'video' ? 'Illustrative view of the episode pipeline.' : 'Illustrative view with sample data. Customer data is private.'}</p>
+      <p className="note">{p.id === 'video' ? 'Interactive illustration of the episode pipeline. Press play.' : 'Interactive illustration with sample data. Try it; customer data is private.'}</p>
     </div>
   );
 };
@@ -112,6 +145,9 @@ const Work = () => (
                 {p.built.map((b) => <li key={b}>{b}</li>)}
               </ul>
               <div className="chips">{p.stack.map((s) => <span className="chip" key={s}>{s}</span>)}</div>
+              {p.caseStudy && (
+                <a className="btn btn-ghost case-link" href={p.caseStudy}>Read the case study <ArrowRight size={16} aria-hidden="true" /></a>
+              )}
             </div>
             <Visual p={p} />
           </article>
@@ -301,22 +337,50 @@ const Footer = () => (
   </footer>
 );
 
-const Site = () => (
-  <div className="site">
-    <a href="#work" className="sr-only focus:not-sr-only">Skip to work</a>
-    <Nav />
-    <main>
-      <Hero />
-      <Work />
-      <Experience />
-      {show.moreProjects && <More />}
-      <Skills />
-      <Certs />
-      {show.testimonials && <TestimonialsSection />}
-      <Contact />
-    </main>
-    <Footer />
-  </div>
-);
+const useHash = () => {
+  const [hash, setHash] = useState(() => window.location.hash);
+  useEffect(() => {
+    const on = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', on);
+    return () => window.removeEventListener('hashchange', on);
+  }, []);
+  return hash;
+};
+
+const Site = () => {
+  const hash = useHash();
+  const caseOpen = hash === '#case-ai-video';
+
+  /* When leaving the case study for a section link, scroll to that section. */
+  useEffect(() => {
+    if (caseOpen || !hash) return;
+    const el = document.getElementById(hash.slice(1));
+    if (el) requestAnimationFrame(() => el.scrollIntoView());
+  }, [hash, caseOpen]);
+
+  return (
+    <div className="site">
+      <a href="#work" className="sr-only focus:not-sr-only">Skip to work</a>
+      <Nav solidAlways={caseOpen} />
+      {caseOpen ? (
+        <CaseStudy />
+      ) : (
+        <main>
+          <Hero />
+          <Work />
+          <Experience />
+          <Remote />
+          {show.moreProjects && <More />}
+          <Skills />
+          <Certs />
+          {show.testimonials && <TestimonialsSection />}
+          <Contact />
+        </main>
+      )}
+      {caseOpen && <Contact />}
+      <Footer />
+    </div>
+  );
+};
 
 export default Site;

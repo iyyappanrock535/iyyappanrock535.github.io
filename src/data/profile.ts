@@ -22,6 +22,28 @@ export const profile = {
     'Open to remote-first roles with product teams in the US, Europe, Singapore and Dubai. Comfortable overlapping with EST, CET and SGT working hours.',
 };
 
+/*
+ * Remote working details. `hoursIST` is the window you are available,
+ * in 24-hour IST (13 = 1:00 PM, 23.5 = 11:30 PM). Leave `noticePeriod`
+ * empty to hide it.
+ */
+export const remote = {
+  hoursIST: { start: 13, end: 23.5 },
+  noticePeriod: '',
+  facts: [
+    ['Remote since', 'October 2022, full time with a Canadian company'],
+    ['Employment', 'Through a global payroll provider (EOR); open to EOR or contractor setups'],
+    ['How I work', 'Async first: written documentation, PR reviews and daily stand-ups'],
+    ['Based in', 'Chennai, India (IST, UTC+5:30)'],
+  ] as [string, string][],
+  cities: [
+    { city: 'New York', tz: 'America/New_York' },
+    { city: 'Berlin', tz: 'Europe/Berlin' },
+    { city: 'Dubai', tz: 'Asia/Dubai' },
+    { city: 'Singapore', tz: 'Asia/Singapore' },
+  ],
+};
+
 export type Featured = {
   id: 'club' | 'athlete' | 'thangam' | 'video';
   name: string;
@@ -32,6 +54,7 @@ export type Featured = {
   built: string[];
   stack: string[];
   screens: string[];
+  caseStudy?: string;
 };
 
 export const featured: Featured[] = [
@@ -107,6 +130,7 @@ export const personal: Featured = {
   ],
   stack: ['React.js', 'TypeScript', 'Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'Redis', 'Ollama', 'Gemini', 'FLUX.2', 'LTX-2.3', 'Three.js', 'FFmpeg', 'Docker'],
   screens: [],
+  caseStudy: '#case-ai-video',
 };
 
 export const moreProjects = [
