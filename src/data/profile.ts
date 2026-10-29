@@ -227,5 +227,6 @@ export const show = {
   testimonials: false,     // client reviews (components/TestimonialsSection.tsx)
   freelancerLink: false,   // freelancer.in profile link in contact and footer
   moreProjects: true,      // earlier projects list
+  timezones: false,        // 'Working across time zones' section (site/Remote.tsx)
 };
 export const freelancerProfile = 'https://www.freelancer.in/u/iyyappanrock0';

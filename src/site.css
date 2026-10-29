@@ -115,17 +115,17 @@ body { background: var(--ink); }
 .hero-meta strong { color: #fff; font-weight: 600; }
 
 /* Product fragments in hero */
-.frags { position: relative; height: 440px; margin-bottom: 72px; }
-@media (max-width: 960px) { .frags { height: 400px; } }
-@media (max-width: 520px) { .frags { height: 470px; } }
+.frags-wrap { margin-bottom: 72px; }
+.frags { display: grid; }
+.frags > .frag { grid-area: 1 / 1; position: relative; }
 .frag {
   position: absolute; background: #fff; color: var(--text);
   border-radius: 12px; box-shadow: 0 24px 60px -20px rgba(0,0,0,.55);
   font-size: 12.5px; overflow: hidden;
 }
-.frag-a { left: 0; right: 12%; top: 0; }
-.frag-b { right: 0; width: 64%; top: 196px; }
-@media (max-width: 520px) { .frag-a { right: 0; } .frag-b { width: 92%; top: 226px; } }
+.frag-a { margin-right: 12%; align-self: start; }
+.frag-b { margin-left: 36%; margin-top: 196px; align-self: start; z-index: 1; }
+@media (max-width: 520px) { .frag-a { margin-right: 0; } .frag-b { margin-left: 8%; margin-top: 226px; } }
 .frag-bar { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: var(--mist); border-bottom: 1px solid var(--line); font-size: 11.5px; color: var(--slate); }
 .frag-dots { display: flex; gap: 5px; }
 .frag-dots i { width: 8px; height: 8px; border-radius: 50%; background: #c9d2df; display: block; }
@@ -140,7 +140,7 @@ body { background: var(--ink); }
 .pill-paid { background: #e3f4ec; color: var(--turf); }
 .pill-due { background: #fdf0dc; color: var(--amber); }
 .pill-info { background: #e4eefa; color: var(--signal-ink); }
-.frag-caption { position: absolute; right: 0; bottom: -30px; font-size: 12px; color: #8ea6c9; }
+.frag-caption { margin-top: 14px; text-align: right; font-size: 12px; color: #8ea6c9; }
 
 @media (prefers-reduced-motion: no-preference) {
   .frag-a { animation: rise .7s cubic-bezier(.16,1,.3,1) .15s both; }

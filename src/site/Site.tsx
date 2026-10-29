@@ -14,7 +14,6 @@ import CaseStudy from './CaseStudy';
 const links = [
   ['#work', 'Work'],
   ['#experience', 'Experience'],
-  ['#remote', 'Time zones'],
   ['#skills', 'Skills'],
   ['#certifications', 'Certifications'],
   ['#contact', 'Contact'],
@@ -91,10 +90,12 @@ const Hero = () => (
           <span><strong>React · React Native · Node.js</strong></span>
         </div>
       </div>
-      <div className="frags" aria-label="Illustrative views of products I build">
-        <ClubRegistrations className="frag-a" />
-        <LoanLedger className="frag-b" />
-        <span className="frag-caption">Illustrative views with sample data</span>
+      <div className="frags-wrap">
+        <div className="frags" aria-label="Illustrative views of products I build">
+          <ClubRegistrations className="frag-a" />
+          <LoanLedger className="frag-b" />
+        </div>
+        <p className="frag-caption">Illustrative views with sample data</p>
       </div>
     </div>
   </section>
@@ -369,7 +370,7 @@ const Site = () => {
           <Hero />
           <Work />
           <Experience />
-          <Remote />
+          {show.timezones && <Remote />}
           {show.moreProjects && <More />}
           <Skills />
           <Certs />
