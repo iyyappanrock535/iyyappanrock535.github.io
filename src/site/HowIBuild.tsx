@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
   Lock, ShieldCheck, Settings, Route, Boxes, Shield, Cog, Clock, Users, CreditCard,
-  Database, Bell, CircleCheck, ChevronDown, Code2, Star, GitBranch, Workflow, Server,
+  Database, Bell, CircleCheck, Code2, Star, GitBranch, Workflow, Server,
   Cpu, Network, Globe, Mail, MessageSquare, HardDrive, Zap, Layers, Atom, Wind, KeyRound,
 } from 'lucide-react';
 
@@ -78,7 +78,7 @@ const HowIBuild = () => {
             scalable Sails.js backend APIs, PostgreSQL databases and external integrations.
           </p>
           <p className="hb-intro">
-            Open a step to see how a user request travels through each layer: frontend interactions and authentication,
+            Select a step to see how a user request travels through each layer: frontend interactions and authentication,
             backend processing, data, third-party services and AWS deployment.
           </p>
           <p className="hb-approach">
@@ -162,13 +162,12 @@ const HowIBuild = () => {
             <ol>
               {steps.map((s, i) => (
                 <li key={s.t} className={open === i ? 'open' : ''}>
-                  <button type="button" aria-expanded={open === i} onClick={() => setOpen(open === i ? null : i)}>
+                  <button type="button" aria-pressed={open === i} onClick={() => setOpen(open === i ? null : i)}>
                     <span className="hb-step-n">{i + 1}</span>
                     <span className="hb-step-ico" aria-hidden="true">{s.icon}</span>
                     <span className="hb-step-t">{s.t}</span>
-                    <ChevronDown size={18} className="hb-chev" aria-hidden="true" />
                   </button>
-                  {open === i && <p className="hb-step-d">{s.d}</p>}
+                  <p className="hb-step-d">{s.d}</p>
                 </li>
               ))}
             </ol>
