@@ -9,7 +9,7 @@ import { ClubRegistrations, LoanLedger, AthleteBooking, ClubSchedule, LoanJourne
 import TestimonialsSection from '@/components/TestimonialsSection';
 import Remote from './Remote';
 import CaseStudy from './CaseStudy';
-import HowIBuild from './HowIBuild';
+import HowIBuild from './how/HowIBuildSection';
 
 /* ───────── Nav ───────── */
 const links = [
