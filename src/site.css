@@ -242,3 +242,11 @@ body { background: var(--ink); }
 .foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 24px; padding-bottom: 24px; }
 .foot a { text-decoration: none; }
 .foot a:hover { color: #fff; }
+
+.courses-head { font-family: var(--display); font-weight: 700; font-size: 20px; color: var(--ink); margin: 48px 0 8px; }
+.courses { list-style: none; padding: 0; border-top: 1px solid var(--line); }
+.courses li { display: grid; grid-template-columns: 1fr 200px 140px; gap: 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.courses .c-name { font-weight: 600; color: var(--ink); }
+.courses .c-meta { color: var(--slate); font-size: 15px; }
+.courses a { color: var(--signal-ink) !important; font-weight: 600; font-size: 15px; text-align: right; }
+@media (max-width: 760px) { .courses li { grid-template-columns: 1fr; gap: 2px; } .courses a { text-align: left; } }

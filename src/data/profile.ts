@@ -170,6 +170,13 @@ export const certifications = [
   },
 ];
 
+export const courses = [
+  { name: 'Data Analysis with Python', issuer: 'IBM on Coursera', date: 'Apr 2026', verify: 'https://coursera.org/verify/UEKX69UF7MCG' },
+  { name: 'Python for Data Science, AI & Development', issuer: 'IBM on Coursera', date: 'Apr 2026', verify: 'https://coursera.org/verify/8BOIDZVO37FF' },
+  { name: 'The Complete React Native + Hooks Course', issuer: 'Udemy', date: 'May 2023', verify: 'https://www.udemy.com/certificate/UC-d40fd389-846a-4de8-8a5c-be2eda82fd2f/' },
+  { name: 'Node with React: Fullstack Web Development', issuer: 'Udemy', date: 'May 2022', verify: 'https://www.udemy.com/certificate/UC-f01b0954-d37d-4c45-be9b-be5ff7213077/' },
+];
+
 /*
  * Visibility switches. The old sections are kept in the code, just hidden.
  * Set a value to true to show that section again.

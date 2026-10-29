@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Download, Mail, ArrowUpRight } from 'lucide-react';
 import {
-  profile, featured, moreProjects, experience, skills, certifications,
+  profile, featured, moreProjects, experience, skills, certifications, courses,
   show, freelancerProfile, type Featured,
 } from '@/data/profile';
 import { ClubRegistrations, LoanLedger, AthleteBooking, ApplicantFlow } from './Mockups';
@@ -198,6 +198,16 @@ const Certs = () => (
           </article>
         ))}
       </div>
+      <h3 className="courses-head">Courses</h3>
+      <ul className="courses">
+        {courses.map((c) => (
+          <li key={c.verify}>
+            <span className="c-name">{c.name}</span>
+            <span className="c-meta">{c.issuer}, {c.date}</span>
+            <a href={c.verify} target="_blank" rel="noreferrer">View credential</a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 );
