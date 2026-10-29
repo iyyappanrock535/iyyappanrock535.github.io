@@ -23,10 +23,10 @@ export const profile = {
 };
 
 export type Featured = {
-  id: 'club' | 'athlete' | 'thangam';
+  id: 'club' | 'athlete' | 'thangam' | 'video';
   name: string;
-  url: string;
-  urlLabel: string;
+  url?: string;
+  urlLabel?: string;
   company: string;
   summary: string;
   built: string[];
@@ -91,6 +91,24 @@ export const featured: Featured[] = [
   },
 ];
 
+export const personal: Featured = {
+  id: 'video',
+  name: 'AI video generation and automation platform',
+  company: 'Personal project',
+  summary:
+    'A platform I designed and built that produces episodic animated stories and 3D racing videos with AI, from script to a YouTube upload that waits for my approval.',
+  built: [
+    'Local LLMs (Ollama) and Gemini for scriptwriting and scene planning',
+    'FLUX.2 for visuals and LTX-2.3 for animation, with multilingual narration',
+    'Automated scheduling and persistent episode memory, so stories continue across episodes',
+    'Redis-based job processing with quality validation before anything is published',
+    'Approval-based YouTube publishing workflow',
+    'GPU-accelerated Three.js racing renderer with action-driven animation, cinematic cameras and automated scene checks',
+  ],
+  stack: ['React.js', 'TypeScript', 'Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'Redis', 'Ollama', 'Gemini', 'FLUX.2', 'LTX-2.3', 'Three.js', 'FFmpeg', 'Docker'],
+  screens: [],
+};
+
 export const moreProjects = [
   { name: 'NOQ Self-Checkout', domain: 'Retail', line: 'Scan-and-pay mobile checkout with routing across several payment gateways.', stack: 'React Native, Redux, REST APIs' },
   { name: 'GoldPe', domain: 'Fintech', line: 'Digital gold savings with live price feeds, wallet and withdrawal flows.', stack: 'React Native, real-time APIs' },
@@ -141,12 +159,12 @@ export const experience = [
 ];
 
 export const skills: [string, string][] = [
-  ['Frontend', 'React.js, Next.js, Vite, TypeScript, JavaScript, Apollo Client, Tailwind CSS, HTML, CSS'],
+  ['Frontend', 'React.js, Next.js, Vite, TypeScript, JavaScript, Apollo Client, Three.js, Tailwind CSS, HTML, CSS'],
   ['Mobile', 'React Native, Expo, App Store and Google Play releases, push notifications, deep linking, offline sync'],
-  ['Backend and APIs', 'Node.js, Express.js, Sails.js, GraphQL, REST, WebSockets, cron jobs, Python, Flask'],
+  ['Backend and APIs', 'Node.js, Express.js, Sails.js, Python, FastAPI, Flask, GraphQL, REST, WebSockets, Redis job queues, cron jobs'],
   ['Databases', 'PostgreSQL, relational data modelling, Firebase, Redis'],
-  ['Cloud and DevOps', 'AWS (EC2, S3, RDS, Lambda), Docker, GitHub Actions, Fastlane, Git'],
-  ['AI and automation', 'Generative AI, LLMs, prompt engineering, RAG, LangChain, Hugging Face, AI-driven test automation, AI-assisted UI design'],
+  ['Cloud and DevOps', 'AWS (EC2, S3, RDS, Lambda), Docker, GitHub Actions, Fastlane, FFmpeg, Git'],
+  ['AI and automation', 'Generative AI, LLMs, Ollama, Gemini, FLUX.2, LTX-2.3, prompt engineering, RAG, LangChain, Hugging Face, AI-driven test automation, AI-assisted UI design'],
   ['Security and payments', 'OAuth 2.0, JWT, Firebase Auth, RBAC, audit logging, Stripe, eNACH'],
   ['Testing', 'Jest, React Testing Library, Detox, Postman'],
 ];

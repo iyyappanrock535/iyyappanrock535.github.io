@@ -82,3 +82,35 @@ export const ApplicantFlow = () => (
     </div>
   </div>
 );
+
+const steps: [string, string, 'paid' | 'info' | 'due'][] = [
+  ['Script', 'Ollama', 'paid'],
+  ['Scene plan', 'Gemini', 'paid'],
+  ['Visuals', 'FLUX.2', 'paid'],
+  ['Animation', 'LTX-2.3', 'info'],
+  ['Narration', 'Multilingual', 'due'],
+  ['Quality check', 'Automated', 'due'],
+  ['Publish', 'Waits for approval', 'due'],
+];
+const label = { paid: 'Done', info: 'Rendering', due: 'Queued' };
+
+export const VideoPipeline = () => (
+  <div className="frag">
+    <Bar url="Episode 14 · Render queue" />
+    <div className="frag-body">
+      <div className="frag-title">The lost kite, episode 14 <span>Scheduled Sat 6:00 PM</span></div>
+      <table className="ftable">
+        <tbody>
+          {steps.map(([step, tool, st], i) => (
+            <tr key={step}>
+              <td style={{ color: 'var(--slate)', width: 22 }}>{i + 1}</td>
+              <td>{step}</td>
+              <td style={{ color: 'var(--slate)' }}>{tool}</td>
+              <td className="num"><span className={`pill pill-${st}`}>{label[st]}</span></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+);

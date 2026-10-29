@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Download, Mail, ArrowUpRight } from 'lucide-react';
 import {
-  profile, featured, moreProjects, experience, skills, certifications, courses,
+  profile, featured, personal, moreProjects, experience, skills, certifications, courses,
   show, freelancerProfile, type Featured,
 } from '@/data/profile';
-import { ClubRegistrations, LoanLedger, AthleteBooking, ApplicantFlow } from './Mockups';
+import { ClubRegistrations, LoanLedger, AthleteBooking, ApplicantFlow, VideoPipeline } from './Mockups';
 import TestimonialsSection from '@/components/TestimonialsSection';
 
 /* ───────── Nav ───────── */
@@ -82,13 +82,14 @@ const Visual = ({ p }: { p: Featured }) => {
     <div className="work-visual">
       {p.id === 'club' && <ClubRegistrations />}
       {p.id === 'athlete' && <AthleteBooking />}
+      {p.id === 'video' && <VideoPipeline />}
       {p.id === 'thangam' && (
         <div style={{ display: 'grid', gap: 16 }}>
           <ApplicantFlow />
           <LoanLedger />
         </div>
       )}
-      <p className="note">Illustrative view with sample data. Customer data is private.</p>
+      <p className="note">{p.id === 'video' ? 'Illustrative view of the episode pipeline.' : 'Illustrative view with sample data. Customer data is private.'}</p>
     </div>
   );
 };
@@ -98,17 +99,19 @@ const Work = () => (
     <div className="wrap">
       <div className="sec-head">
         <h2 className="h-section">Products I build and run</h2>
-        <p className="lede">Three production systems I work on end to end, from the database schema to the screens people use every day.</p>
+        <p className="lede">Three production systems I work on end to end, from the database schema to the screens people use every day, and one AI platform I built on my own.</p>
       </div>
       <div className="work-list">
-        {featured.map((p, i) => (
+        {[...featured, personal].map((p, i) => (
           <article key={p.id} className={`work ${i % 2 ? 'flip' : ''}`}>
             <div>
               {!p.name.startsWith(p.company) && <p className="work-company">{p.company}</p>}
               <h3>{p.name}</h3>
-              <a className="work-link" href={p.url} target="_blank" rel="noreferrer">
-                {p.urlLabel} <ArrowUpRight size={15} style={{ display: 'inline', verticalAlign: '-2px' }} aria-hidden="true" />
-              </a>
+              {p.url && (
+                <a className="work-link" href={p.url} target="_blank" rel="noreferrer">
+                  {p.urlLabel} <ArrowUpRight size={15} style={{ display: 'inline', verticalAlign: '-2px' }} aria-hidden="true" />
+                </a>
+              )}
               <p className="sum">{p.summary}</p>
               <ul className="work-built" aria-label="What I built">
                 {p.built.map((b) => <li key={b}>{b}</li>)}
