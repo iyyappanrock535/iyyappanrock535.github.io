@@ -1,73 +1,33 @@
-# Welcome to your Lovable project
+# iyyappanrock535.github.io
 
-## Project info
+Portfolio of Iyyappan Sivakumar, Senior Full Stack Engineer. React, Vite and Tailwind CSS, published to GitHub Pages from the `gh-pages` branch.
 
-**URL**: https://lovable.dev/projects/b5943e1b-192f-4cfe-a96b-596911259f76
+## Edit content
 
-## How can I edit this code?
+All text lives in `src/data/profile.ts`: profile, featured work, earlier projects, experience, skills and certifications.
 
-There are several ways of editing your application.
+## Add project screenshots
 
-**Use Lovable**
+1. Save images in `public/work/club/`, `public/work/athlete/` or `public/work/thangam/` (PNG or WebP, about 1600px wide).
+2. List them in that project's `screens` array, for example `screens: ['/work/club/dashboard.png']`.
+3. Blur or replace real customer names, phone numbers and amounts first.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b5943e1b-192f-4cfe-a96b-596911259f76) and start prompting.
+Until a project has screenshots, the site shows an illustrative view with sample data.
 
-Changes made via Lovable will be committed automatically to this repo.
+## Hidden sections
 
-**Use your preferred IDE**
+The client reviews and the Freelancer profile link are still in the code but hidden. Turn them on in `show` at the bottom of `src/data/profile.ts`.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Resume
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Replace `public/Iyyappan-Sivakumar-Resume.pdf` when the resume changes.
 
-Follow these steps:
+## Run and publish
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+npm install
+npm run dev        # local preview
+npm run build      # output in dist/
 ```
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/b5943e1b-192f-4cfe-a96b-596911259f76) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Publish by pushing the contents of `dist/` to the `gh-pages` branch.
