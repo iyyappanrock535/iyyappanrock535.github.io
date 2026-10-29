@@ -9,10 +9,12 @@ import { ClubRegistrations, LoanLedger, AthleteBooking, ClubSchedule, LoanJourne
 import TestimonialsSection from '@/components/TestimonialsSection';
 import Remote from './Remote';
 import CaseStudy from './CaseStudy';
+import HowIBuild from './HowIBuild';
 
 /* ───────── Nav ───────── */
 const links = [
   ['#work', 'Work'],
+  ['#how', 'How I build'],
   ['#experience', 'Experience'],
   ['#skills', 'Skills'],
   ['#certifications', 'Certifications'],
@@ -389,6 +391,7 @@ const Site = () => {
           <Hero />
           <CoreStack />
           <Work />
+          <HowIBuild />
           <Experience />
           {show.timezones && <Remote />}
           {show.moreProjects && <More />}
