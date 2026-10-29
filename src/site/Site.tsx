@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Download, Mail, ArrowUpRight, Moon, Sun, ArrowRight } from 'lucide-react';
 import {
-  profile, featured, personal, moreProjects, experience, skills, certifications, courses,
+  profile, featured, personal, coreStack, moreProjects, experience, skills, certifications, courses,
   show, freelancerProfile, type Featured,
 } from '@/data/profile';
 import { ClubRegistrations, LoanLedger, AthleteBooking, ClubSchedule, LoanJourney, Storyboard } from './Mockups';
@@ -101,6 +101,25 @@ const Hero = () => (
   </section>
 );
 
+/* ───────── Core stack ───────── */
+const CoreStack = () => (
+  <section className="core" aria-labelledby="core-h">
+    <div className="wrap">
+      <h2 id="core-h" className="core-h">Core stack</h2>
+      <ul className="core-grid">
+        {coreStack.map((c) => (
+          <li key={c.name}>
+            <a href={c.href} className="core-item">
+              <b>{c.name}</b>
+              <span>{c.proof}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+);
+
 /* ───────── Featured work ───────── */
 const Visual = ({ p }: { p: Featured }) => {
   if (p.screens.length) {
@@ -132,7 +151,7 @@ const Work = () => (
       </div>
       <div className="work-list">
         {[...featured, personal].map((p, i) => (
-          <article key={p.id} className={`work ${i % 2 ? 'flip' : ''}`}>
+          <article key={p.id} id={`work-${p.id}`} className={`work ${i % 2 ? 'flip' : ''}`}>
             <div>
               {!p.name.startsWith(p.company) && <p className="work-company">{p.company}</p>}
               <h3>{p.name}</h3>
@@ -368,6 +387,7 @@ const Site = () => {
       ) : (
         <main>
           <Hero />
+          <CoreStack />
           <Work />
           <Experience />
           {show.timezones && <Remote />}

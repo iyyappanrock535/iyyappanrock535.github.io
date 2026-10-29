@@ -182,6 +182,18 @@ export const experience = [
   },
 ];
 
+/* Core stack strip under the hero: each skill links to where it was used. */
+export const coreStack: { name: string; proof: string; href: string }[] = [
+  { name: 'React.js', proof: 'Club App, Athlete App and the AI video dashboard', href: '#work-club' },
+  { name: 'React Native', proof: 'iOS and Android apps shipped to the App Store and Google Play', href: '#experience' },
+  { name: 'Expo', proof: 'Mobile builds, push notifications and deep linking', href: '#experience' },
+  { name: 'Node.js', proof: 'Communiti APIs with Sails.js and Express, 10K+ daily users', href: '#work-club' },
+  { name: 'Python', proof: 'FastAPI workers that run the AI video pipeline', href: '#work-video' },
+  { name: 'Tailwind CSS', proof: 'Club and Athlete app interfaces with Vite', href: '#work-athlete' },
+  { name: 'PostgreSQL', proof: 'Relational schemas for Communiti and the Thangam loan system', href: '#work-thangam' },
+  { name: 'AWS deployment', proof: 'EC2, S3 and RDS with GitHub Actions pipelines', href: '#experience' },
+];
+
 export const skills: [string, string][] = [
   ['Frontend', 'React.js, Next.js, Vite, TypeScript, JavaScript, Apollo Client, Three.js, Tailwind CSS, HTML, CSS'],
   ['Mobile', 'React Native, Expo, App Store and Google Play releases, push notifications, deep linking, offline sync'],
