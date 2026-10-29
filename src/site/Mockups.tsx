@@ -114,3 +114,88 @@ export const VideoPipeline = () => (
     </div>
   </div>
 );
+
+/* ───────── Club App: weekly schedule ───────── */
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const sessions: { day: number; start: number; len: number; name: string; tone: string; count: string }[] = [
+  { day: 0, start: 0, len: 2, name: 'U10 Skating', tone: 'a', count: '14/16' },
+  { day: 1, start: 1, len: 2, name: 'Learn to Swim', tone: 'b', count: '9/10' },
+  { day: 2, start: 0, len: 1, name: 'Private lesson', tone: 'c', count: '1/1' },
+  { day: 2, start: 2, len: 2, name: 'U12 Soccer', tone: 'd', count: '18/24' },
+  { day: 3, start: 1, len: 2, name: 'U10 Skating', tone: 'a', count: '15/16' },
+  { day: 4, start: 0, len: 2, name: 'Learn to Swim', tone: 'b', count: '10/10' },
+  { day: 5, start: 0, len: 3, name: 'Summer camp', tone: 'e', count: '42/50' },
+  { day: 5, start: 3, len: 1, name: 'Private lesson', tone: 'c', count: '1/1' },
+];
+export const ClubSchedule = () => (
+  <div className="frag" role="img" aria-label="Illustrative weekly schedule in the Club App">
+    <Bar url="club.communiti.app/schedule" />
+    <div className="frag-body">
+      <div className="frag-title">Week of 9 Nov <span>8 sessions · 110 registrations</span></div>
+      <div className="sched">
+        <div className="sched-times"><span />{['4 PM', '5 PM', '6 PM', '7 PM'].map((t) => <span key={t}>{t}</span>)}</div>
+        {days.map((d, di) => (
+          <div className="sched-col" key={d}>
+            <div className="sched-day">{d}</div>
+            <div className="sched-track">
+              {sessions.filter((s) => s.day === di).map((s) => (
+                <div key={s.name + s.start} className={`sess sess-${s.tone}`} style={{ gridRow: `${s.start + 1} / span ${s.len}` }}>
+                  <b>{s.name}</b><small>{s.count}</small>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+/* ───────── Thangam: loan journey ───────── */
+const journey = ['Applicant', 'Co-applicant', 'Application', 'Customer', 'Disbursed', 'eNACH'];
+export const LoanJourney = () => (
+  <div className="loancard" role="img" aria-label="Illustrative loan journey in the Thangam loan system">
+    <div className="lc-top">
+      <div>
+        <div className="lc-label">Sakthi entrepreneurship loan</div>
+        <div className="lc-amt">₹1,50,000</div>
+        <div className="lc-sub">S. Lakshmi · 24 months · Loan officer R. Kumar</div>
+      </div>
+      <span className="pill pill-paid">eNACH active</span>
+    </div>
+    <ol className="journey">
+      {journey.map((j, i) => <li key={j} className={i < 6 ? 'done' : ''}><i />{j}</li>)}
+    </ol>
+    <div className="lc-repay">
+      <div className="lc-row"><span>Repaid</span><span>9 of 24 EMIs</span></div>
+      <div className="lc-bar"><span style={{ width: '37.5%' }} /></div>
+      <div className="lc-row lc-next"><span>Next EMI ₹8,450</span><span>Auto-debit on 05 Dec</span></div>
+    </div>
+  </div>
+);
+
+/* ───────── AI video: storyboard ───────── */
+const scenes = [
+  { cls: 'sc-dawn', t: 'Scene 1', d: 'Village at dawn' },
+  { cls: 'sc-kite', t: 'Scene 2', d: 'The kite breaks free' },
+  { cls: 'sc-race', t: 'Scene 3', d: 'Race, lap 2' },
+  { cls: 'sc-night', t: 'Scene 4', d: 'Home by moonlight' },
+];
+export const Storyboard = () => (
+  <div className="board" role="img" aria-label="Illustrative storyboard and timeline from the AI video platform">
+    <div className="board-head"><span>Episode 14 · The lost kite</span><span className="board-live">Rendering 3 of 4</span></div>
+    <div className="frames">
+      {scenes.map((s) => (
+        <figure key={s.t} className={`frame ${s.cls}`}>
+          <div className="frame-art" />
+          <figcaption><b>{s.t}</b>{s.d}</figcaption>
+        </figure>
+      ))}
+    </div>
+    <div className="tracks">
+      <div className="track"><span>Video</span><div className="clips"><i style={{ flex: 3 }} /><i style={{ flex: 2 }} /><i style={{ flex: 3 }} className="cur" /><i style={{ flex: 2 }} className="todo" /></div></div>
+      <div className="track"><span>Voice</span><div className="wave" /></div>
+      <div className="playhead" />
+    </div>
+  </div>
+);

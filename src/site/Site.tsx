@@ -5,7 +5,7 @@ import {
   profile, featured, personal, moreProjects, experience, skills, certifications, courses,
   show, freelancerProfile, type Featured,
 } from '@/data/profile';
-import { ClubRegistrations, LoanLedger, AthleteBooking, ApplicantFlow, VideoPipeline } from './Mockups';
+import { ClubRegistrations, LoanLedger, AthleteBooking, ClubSchedule, LoanJourney, Storyboard } from './Mockups';
 import TestimonialsSection from '@/components/TestimonialsSection';
 
 /* ───────── Nav ───────── */
@@ -79,16 +79,11 @@ const Visual = ({ p }: { p: Featured }) => {
     );
   }
   return (
-    <div className="work-visual">
-      {p.id === 'club' && <ClubRegistrations />}
+    <div className={`work-visual v-${p.id}`}>
+      {p.id === 'club' && <ClubSchedule />}
       {p.id === 'athlete' && <AthleteBooking />}
-      {p.id === 'video' && <VideoPipeline />}
-      {p.id === 'thangam' && (
-        <div style={{ display: 'grid', gap: 16 }}>
-          <ApplicantFlow />
-          <LoanLedger />
-        </div>
-      )}
+      {p.id === 'thangam' && <LoanJourney />}
+      {p.id === 'video' && <Storyboard />}
       <p className="note">{p.id === 'video' ? 'Illustrative view of the episode pipeline.' : 'Illustrative view with sample data. Customer data is private.'}</p>
     </div>
   );
